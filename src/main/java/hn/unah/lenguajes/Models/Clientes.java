@@ -1,13 +1,5 @@
 package hn.unah.lenguajes.Models;
 
-import java.sql.Date;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,27 +13,31 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.Table;
+
+import javax.persistence.CascadeType;
+
 @Entity
+@Table(name="clientes")
 @Getter
 @Setter
-@Table(name="productos")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Productos {
-    
+public class Clientes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String idproductos;
+    @Column(name="idcliente")
+    private String idcliente;
 
-    @Column(name="nombreproducto")
-    private String nombreProducto;
+    private String nombre;
+    
+    private String contrasenia;
 
-    @Column(name="fechavencimiento")
-    private Date FechaVencimiento;
 
-    @Column(name="cantidadexistente")
-    private int cantidadExistente;
+    @Column(name="idcarrito")
+    private String idcarrito;
 
-    private String imagen;
+    @OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idwishlist", referencedColumnName="idwishlist")
+	private wishlist wishlist;
 
 }

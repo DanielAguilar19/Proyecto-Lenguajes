@@ -1,25 +1,38 @@
 package hn.unah.lenguajes.Models;
-import java.sql.Date;
 
-import javax.persistence.Column;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Column;
+import javax.persistence.OneToOne;
+import javax.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import javax.persistence.Table;
+
+@Entity
+@Getter
+@Setter
+@Table(name="wishlist")
+@NoArgsConstructor
+@AllArgsConstructor
 public class wishlist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idWIshlist;
+    @Column(name="idwishlist")
+    private String idWIshlist;
 
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private cliente cliente;
+    private String idproducto;
 
-    // Otras propiedades y relaciones según sea necesario
+    @JsonIgnore	
+	@OneToOne(mappedBy = "wishlist")
+	private Clientes cliente;
 
-    // Getters y setters
 
 }

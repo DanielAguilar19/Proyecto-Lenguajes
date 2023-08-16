@@ -1,7 +1,9 @@
 package hn.unah.lenguajes.repositories;
 import org.springframework.data.repository.CrudRepository;
-import hn.unah.lenguajes.Models.wishlist;
+import org.springframework.stereotype.Repository;
 
-public interface wishlistRepository extends CrudRepository<wishlist, Long> {
+import hn.unah.lenguajes.Models.wishlist;
+@Repository
+public interface wishlistRepository extends CrudRepository<wishlist, String> {
     
 }
